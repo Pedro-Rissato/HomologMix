@@ -7,7 +7,6 @@ retorna True se estiver lá e False caso não esteja
 import os
 
 def checkWinrar():
-
     winrarPath = '/Program Files/WinRAR'
     return os.path.exists(winrarPath)
 
