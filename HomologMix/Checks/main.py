@@ -11,21 +11,42 @@ from checkWinrar import checkWinrar
 from checkOffice import checkOffice
 from checkJava import checkJava
 from tkinter import *
+from booleanChecker import function_checker
+
 
 class HomologMix:
     def __init__(self, master=None):
-        self.bv = Frame(master)
-        self.bv.pack()
-        self.msg = Label(self.bv, text="Homolog Mix")
-        self.msg["font"] = ("Arial", "10", "bold", "italic")
+
+        self.Widget1 = Frame(master)
+        self.Widget1.pack()
+        self.msg = Label(self.Widget1, text="HomologMix")
+        self.msg["font"] = ("Calibri", "9", "italic")
         self.msg.pack()
-        self.iniciar = Button(self.bv)
-        self.iniciar["text"] = "Iniciar"
-        self.iniciar["font"] = ("Arial", "10")
-        self.iniciar["width"] = 5
-        self.iniciar["height"] = 1
-        self.iniciar["command"] = self.bv.quit
-        self.iniciar.pack (side=RIGHT)
+
+        self.Widget_all_tests = Frame(master)
+        self.Widget_all_tests.pack()
+        self.msg = Label(self.Widget_all_tests, text="Teste geral")
+        self.msg["font"] = ("Calibri", "9", "italic")
+        self.msg.pack()
+
+        self.check_button = Button(self.Widget_all_tests)
+        self.check_button["font"] = ("Calibri", "9", "italic")
+        self.check_button["text"] = "Checagem"
+        self.check_button["width"] = 40
+        self.check_button.bind("<Button-1>", self.allChecker)
+        self.check_button.pack()
+
+
+    def allChecker(self, event):
+        falses = function_checker()
+
+        if falses:
+            self.msg["text"] = "Os seguintes itens não estão corretos:\n" + "\n".join(falses)
+        else:
+            self.msg["text"] = "Todas as checagens deram certo! Prosseguindo com a homologação básica da máquina..."
+
+
+
 root = Tk()
 HomologMix(root)
 root.mainloop()

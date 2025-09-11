@@ -9,4 +9,4 @@ def check_User():
     if User == "POLIMIX":
         return True
     else:
-        return User
+        return False, User
