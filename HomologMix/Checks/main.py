@@ -17,7 +17,7 @@ from PIL import Image, ImageTk
 import os
 
 # --- Configurações ---
-COR_FUNDO = "#dc8417"     # cor de fundo da janela
+COR_FUNDO = "#dc8417"     # cor de fundo das janelas
 COR_FONTE = "white"       # cor do texto
 
 class HomologMix:
