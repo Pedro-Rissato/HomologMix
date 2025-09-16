@@ -13,60 +13,105 @@ from checkJava import checkJava
 from tkinter import *
 from booleanChecker import homolog_check
 import sys
+from PIL import Image, ImageTk
+import os
 
+# --- Configurações ---
+COR_FUNDO = "#dc8417"     # cor de fundo da janela
+COR_FONTE = "white"       # cor do texto
 
 class HomologMix:
     def __init__(self, master=None):
+        master.config(bg=COR_FUNDO)
 
-        self.Widget1 = Frame(master)
+        # Frame principal
+        self.Widget1 = Frame(master, bg=COR_FUNDO)
         self.Widget1.pack()
-        self.msg = Label(self.Widget1, text="HomologMix")
-        self.msg["font"] = ("Calibri", "9", "italic")
+        self.msg = Label(self.Widget1,
+                         text="HomologMix",
+                         font=("Calibri", "9", "italic"),
+                         bg=COR_FUNDO,
+                         fg=COR_FONTE)
         self.msg.pack()
 
-        self.Widget_all_tests = Frame(master)
+        # Frame da checagem geral
+        self.Widget_all_tests = Frame(master, bg=COR_FUNDO)
         self.Widget_all_tests.pack()
-        self.msg = Label(self.Widget_all_tests, text="Teste geral")
-        self.msg["font"] = ("Calibri", "9", "italic")
+        self.msg = Label(self.Widget_all_tests,
+                         text="Teste geral",
+                         font=("Calibri", "9", "italic"),
+                         bg=COR_FUNDO,
+                         fg=COR_FONTE)
         self.msg.pack()
 
-        self.widget_Homolog = Frame(master)
+        # Frame da homologação
+        self.widget_Homolog = Frame(master, bg=COR_FUNDO)
         self.widget_Homolog.pack()
 
-        self.homolog_button = Button(self.widget_Homolog)
-        self.homolog_button["font"] = ("Calibri", "9", "italic")
-        self.homolog_button["text"] = "Inicie a homologação!"
-        self.homolog_button["width"] = 40
-        self.homolog_button.bind ("<Button-1>", self.homolog_Setup)
+        # Botão homologação
+        self.homolog_button = Button(self.widget_Homolog,
+                                     font=("Calibri", "9", "italic"),
+                                     text="Inicie a homologação!",
+                                     bg=COR_FUNDO,
+                                     fg=COR_FONTE,
+                                     activebackground=COR_FUNDO,
+                                     activeforeground=COR_FONTE,
+                                     width=40)
+        self.homolog_button.bind("<Button-1>", self.homolog_Setup)
         self.homolog_button.pack()
 
-        self.check_button = Button(self.Widget_all_tests)
-        self.check_button["font"] = ("Calibri", "9", "italic")
-        self.check_button["text"] = "Checagem geral"
-        self.check_button["width"] = 40
+        # Botão checagem geral
+        self.check_button = Button(self.Widget_all_tests,
+                                   font=("Calibri", "9", "italic"),
+                                   text="Checagem geral",
+                                   bg=COR_FUNDO,
+                                   fg=COR_FONTE,
+                                   activebackground=COR_FUNDO,
+                                   activeforeground=COR_FONTE,
+                                   width=40)
         self.check_button.bind("<Button-1>", self.allChecker)
         self.check_button.pack()
 
-
     def allChecker(self, event):
         falses = homolog_check()
-
         if falses:
             self.msg["text"] = "Os seguintes itens não estão corretos:\n" + "\n".join(falses)
         else:
             self.msg["text"] = "Todas as checagens deram certo! Prosseguindo com a homologação básica da máquina..."
 
-
     def homolog_Setup(self, event):
         if check_User():
             janela2 = Toplevel()
             janela2.title("Usuário incorreto!")
-            label_nome = Label(janela2, text="Usuário incorreto! Não é possível prosseguir com a homologação!")
+            janela2.config(bg=COR_FUNDO)
+            label_nome = Label(janela2,
+                               text="Usuário incorreto! Não é possível prosseguir com a homologação!",
+                               bg=COR_FUNDO,
+                               fg=COR_FONTE)
             label_nome.grid(row=0, column=0)
-            return_button = Button(janela2, text = 'Fechar', command=sys.exit)
+            return_button = Button(janela2,
+                                   text='Fechar',
+                                   command=sys.exit,
+                                   bg=COR_FUNDO,
+                                   fg=COR_FONTE,
+                                   activebackground=COR_FUNDO,
+                                   activeforeground=COR_FONTE)
             return_button.grid(row=1, column=0)
-        else:
 
-root = Tk()
-HomologMix(root)
-root.mainloop()
+
+# --- Janela principal ---
+homologmix = Tk()
+homologmix.title("Homolog Mix")
+homologmix.geometry("700x400")
+homologmix.config(bg=COR_FUNDO)
+
+# Ícone
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+homologmix_img = Image.open(os.path.join(BASE_DIR, "assets", "images", "HomologMix.png"))
+homologmix_img = ImageTk.PhotoImage(homologmix_img)
+homologmix.iconphoto(False, homologmix_img)
+
+# Inicia a interface
+app = HomologMix(homologmix)
+
+homologmix.mainloop()
