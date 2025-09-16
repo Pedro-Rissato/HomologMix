@@ -17,7 +17,7 @@ import sys
 from PIL import Image, ImageTk
 import os
 
-#Configurações
+# --- Configurações ---
 COR_FUNDO = "#dc8417"     # cor de fundo das janelas
 COR_FONTE = "white"       # cor do texto
 
@@ -100,23 +100,23 @@ class HomologMix:
             return_button.grid(row=1, column=0)
 
 
-#Janela principal
+# --- Janela principal ---
 homologmix = Tk()
 homologmix.title("Homolog Mix")
 homologmix.geometry("700x400")
 homologmix.config(bg=COR_FUNDO)
 
-#Style
+#style
 style = ttk.Style(homologmix)
-style.theme_use("vista")
+style.theme_use("alt")
 
-#Icone
+#icone
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 homologmix_img = Image.open(os.path.join(BASE_DIR, "assets", "images", "HomologMix.png"))
 homologmix_img = ImageTk.PhotoImage(homologmix_img)
 homologmix.iconphoto(False, homologmix_img)
 
-#Inicia a interface
+# Inicia a interface
 app = HomologMix(homologmix)
 
 homologmix.mainloop()
