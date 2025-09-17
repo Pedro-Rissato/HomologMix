@@ -1,13 +1,13 @@
-from checkUser import check_User
-from checkWinrar import checkWinrar
-from checkOffice import checkOffice
-from checkJava import checkJava
-from checkPXdoc import checkPXdoc
-from checkGed import checkGed
-from checkGedoc import checkGedoc
-from checkRMM import checkRMM
+from HomologMix.old_checks.checkUser import check_User
+from HomologMix.old_checks.checkWinrar import checkWinrar
+from HomologMix.old_checks.checkOffice import checkOffice
+from HomologMix.old_checks.checkJava import checkJava
+from HomologMix.old_checks.checkPXdoc import checkPXdoc
+from HomologMix.old_checks.checkGed import checkGed
+from HomologMix.old_checks.checkGedoc import checkGedoc
+from HomologMix.old_checks.checkRMM import checkRMM
 from checkBitDefender import checkBitDefender
-from checkMargomix import checkMargomix
+from HomologMix.old_checks.checkMargomix import checkMargomix
 
 
 def homolog_check():

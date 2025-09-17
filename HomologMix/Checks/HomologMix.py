@@ -6,16 +6,11 @@ Main Funcntion
     After this, it will procede to with Inno Setup and install all that is needed.
 '''
 from tkinter import ttk
-
-from checkUser import check_User
-from checkWinrar import checkWinrar
-from checkOffice import checkOffice
-from checkJava import checkJava
 from tkinter import *
-from booleanChecker import homolog_check
 import sys
 from PIL import Image, ImageTk
 import os
+from functions_homolog import *
 
 
 # Função para obter caminho base do programa (suporta .exe)
@@ -30,7 +25,7 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 #Configurações
-COR_FUNDO = "#dc8417"     # cor de fundo das janelas
+COR_FUNDO = "grey"     # cor de fundo das janelas
 COR_FONTE = "white"       # cor do texto
 
 class HomologMix:
@@ -115,7 +110,7 @@ class HomologMix:
 #Janela principal
 homologmix = Tk()
 homologmix.title("Homolog Mix")
-homologmix.geometry("700x400")
+homologmix.geometry("300x250")
 homologmix.config(bg=COR_FUNDO)
 
 #Style
