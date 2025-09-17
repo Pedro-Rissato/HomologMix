@@ -46,7 +46,3 @@ def homolog_check():
         except Exception as e:
             falses.append(f"{name} (erro: {e})")
     return falses
-print("User:", check_User())
-print("Winrar:", checkWinrar())
-print("Office:", checkOffice())
-print("Java:", checkJava())

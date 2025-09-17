@@ -10,3 +10,4 @@ def checkOffice():
     officePath = '/ProgramData/Microsoft/Windows/Start Menu/Programs/Microsoft Office/Microsoft Outlook 2010.lnk'
     return os.path.exists(officePath)
 
+

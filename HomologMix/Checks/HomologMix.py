@@ -17,7 +17,19 @@ import sys
 from PIL import Image, ImageTk
 import os
 
-# --- Configurações ---
+
+# Função para obter caminho base do programa (suporta .exe)
+def resource_path(relative_path):
+    """Retorna caminho absoluto, mesmo quando empacotado em .exe"""
+    if getattr(sys, 'frozen', False):
+        # Se estiver rodando como executável
+        base_path = sys._MEIPASS
+    else:
+        # Rodando como script .py
+        base_path = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(base_path, relative_path)
+
+#Configurações
 COR_FUNDO = "#dc8417"     # cor de fundo das janelas
 COR_FONTE = "white"       # cor do texto
 
@@ -100,23 +112,21 @@ class HomologMix:
             return_button.grid(row=1, column=0)
 
 
-# --- Janela principal ---
+#Janela principal
 homologmix = Tk()
 homologmix.title("Homolog Mix")
 homologmix.geometry("700x400")
 homologmix.config(bg=COR_FUNDO)
 
-#style
+#Style
 style = ttk.Style(homologmix)
-style.theme_use("alt")
+style.theme_use("default")
 
-#icone
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-homologmix_img = Image.open(os.path.join(BASE_DIR, "assets", "images", "HomologMix.png"))
-homologmix_img = ImageTk.PhotoImage(homologmix_img)
-homologmix.iconphoto(False, homologmix_img)
+#Icone
+homologmix.iconbitmap(resource_path(os.path.join("assets", "images", "HomologMixx.ico")))
 
-# Inicia a interface
+
+#Inicia a interface
 app = HomologMix(homologmix)
 
 homologmix.mainloop()
